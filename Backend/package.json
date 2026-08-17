@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "we are on backend",
+  "keywords": [
+    "javascript",
+    "backend",
+    "nodejs"
+  ],
+  "license": "ISC",
+  "author": "navyum",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "scripts": {
+    "shinchan": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
