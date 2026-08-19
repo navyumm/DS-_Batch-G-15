@@ -9,7 +9,7 @@ function App() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/random-user')
+    axios.get('/api/random-user')
       .then((response) => {
         setUsers(response.data)
       })
@@ -31,6 +31,7 @@ function App() {
         <div key={index}>
           <h3>{user.name}</h3>
           <p>{user.age}</p>
+          <p>{user.city}</p>
         </div>
       ))
     }

@@ -5,7 +5,7 @@ const port = 3000
 
 
 // routes
-app.get('/random-user', (req, res) => {
+app.get('/api/random-user', (req, res) => {
     const users = [
         { id: 1, name: "Alice", age: 24, city: "Delhi" },
         { id: 2, name: "Bob", age: 31, city: "Mumbai" },
