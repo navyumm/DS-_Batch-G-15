@@ -16,9 +16,9 @@ app.get('/api/random-user', (req, res) => {
     res.send(users)
 })
 
-// app.get('/edixo', (req, res) => {
-//     res.send('<h1>Hello Edixo</h1>')
-// })
+app.get('/', (req, res) => {
+    res.send('<h1>Hello Edixo</h1>')
+})
 
 // app.get("/navyum", (req, res) => {
 //     res.send("<h1>Hello Navyum</h1>")

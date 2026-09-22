@@ -9,14 +9,15 @@
   ],
   "license": "ISC",
   "author": "navyum",
-  "type": "commonjs",
+  "type": "module",
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.9.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

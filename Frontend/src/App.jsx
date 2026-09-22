@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import axios from 'axios'
 import './App.css'
 
@@ -18,24 +15,28 @@ function App() {
       })
   }, [])
 
-
-  // useEffect(()=>{},[])
-  
-
   return (
-    <>
-    <h1>frontend and backend connection</h1>
-    <h2>Number of users: {users.length}</h2>
-    {
-      users.map((user, index) => (
-        <div key={index}>
-          <h3>{user.name}</h3>
-          <p>{user.age}</p>
-          <p>{user.city}</p>
-        </div>
-      ))
-    }
-    </>
+    <div className="app">
+      <h1>Frontend and Backend Connection</h1>
+
+      <h2>
+        Number of users: <span>{users.length}</span>
+      </h2>
+
+      <div className="user-container">
+        {users.map((user, index) => (
+          <div className="user-card" key={index}>
+            <h3>{user.name}</h3>
+            <p>
+              <strong>Age:</strong> {user.age}
+            </p>
+            <p>
+              <strong>City:</strong> {user.city}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
