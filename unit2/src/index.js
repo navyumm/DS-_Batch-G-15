@@ -1,22 +1,13 @@
 // const express = require("express");
 import express from "express"
+import todoRoutes from "./routes/todo.routes.js"
 const app = express(); // create server
+
+
 const port = 8080;
 
-const hello = (req, res)=>{
-    res.send("helloo class")
-}
 
-app.get("/", hello)
-
-
-app.get("/home", (req, res)=>{
-    res.send("this is our home page")
-})
-
-
-
-
+app.use("/api/v1/todo", todoRoutes);
 
 
 app.listen(port, ()=>{
