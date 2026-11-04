@@ -33,7 +33,7 @@ const getTodo = (req, res) => {
 
 // GET single todo
 const getTodoById = (req, res) => {
-  const id = Number(req.params.id);
+  const id = Number(req.params.id); // 1
 
   const todo = todos.find((todo) => todo.id === id);
 

@@ -1,17 +1,23 @@
-// const express = require("express");
-import express from "express"
-import todoRoutes from "./routes/todo.routes.js"
-const app = express(); // create server
+import express from "express";
+const app = express();
 
 
-const port = 8080;
-app.use(express.json());
+app.use((req, res, next)=>{
+    console.log("first middleware");
+    next()
+})
+
+app.use((req, res, next)=>{
+    console.log("second middleware");
+    next()
+})
+
+app.get("/", (req, res)=>{
+    res.send("hiiiiii")
+})
 
 
-app.use("/api/v1/todo", todoRoutes);
 
-
-app.listen(port, ()=>{
-    console.log(`server is running on PORT : ${port}`);
-}) // start server
-
+app.listen(8080, ()=>{
+    console.log(`server is running`);
+})
