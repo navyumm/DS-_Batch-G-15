@@ -1,28 +1,32 @@
-import connectDB from "./db/db.js";
+
+import connectToDB from "./db/dbConnection.js";
+import app from "./app.js";
 import 'dotenv/config';
 
-connectDB()
+connectToDB()
+.then(()=>{
+    app.listen(process.env.PORT || 8000, ()=>{
+        console.log(`Server is running on PORT : ${process.env.PORT}`, );
+    })
+})
+.catch((error)=>console.log("MONGODB CONNECTION FAILED:", error));
 
 
 //! IIFE Function
 /*
 (async()=>{
     try {
-        const connectionDB = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        console.log(`\n mongoDB connected ${connectionDB.connection.host}`);
-
-        app.on("error", (error)=>{
-            console.log("ERROR", error);
-            throw error     
-        })
-
-        app.listen(process.env.PORT, ()=>{
-            console.log(`App is listing on PORT : ${PORT}`);  
-        })
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+        console.log(connectionInstance.connection.host);
         
+        // app.on()
+
+        app.listen(process.env.PORT || 8000, ()=>{
+            console.log(`Server is running on PORT : ${PORT}`);
+        })
     } catch (error) {
         console.error("connect failed!!!", error);
-        process.exit(1)
+        throw error
     }
 })();
 */
