@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import bycrpt from "bcrypt";
 
 const userSchema = new Schema(
     {
@@ -21,12 +22,6 @@ const userSchema = new Schema(
             required: [true, "Fullname is required"],
             trim: true,
         },
-        avatar: {
-            type: String,
-        },
-        coverImage: {
-            type: String,
-        },
         orderHistory: [
             {
                 type: Schema.Types.ObjectId,
@@ -43,5 +38,43 @@ const userSchema = new Schema(
         timestamps: true,
     }
 );
+
+
+userSchema.pre("save", async function(next){
+    if(!this.isModified) return next();
+    
+    this.password = bycrpt.hash(this.password, 10);
+    next()
+})
+
+userSchema.methods.isPasswordCorrect = async function (password) {
+   return await bycrpt.compare(password, this.password)
+}
+
+userSchema.methods.generateAccessToken = function (){
+    jwt.sign({
+        _id: this._id,
+        email: this.email,
+        username: this.username,
+        fullName: this.fullName
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+        expiryIn: process.env.ACCESS_TOKEN_EXPIRY
+    }
+)
+}
+
+
+userSchema.methods.generateRefreshToken = function (){
+    jwt.sign({
+        _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+        expiryIn: process.env.REFRESH_TOKEN_EXPIRY
+    }
+)
+}
 
 export const User = mongoose.model("User", userSchema);

@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import mongooseAaggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const orderSchema = new Schema(
     {
@@ -41,5 +42,7 @@ const orderSchema = new Schema(
         timestamps: true,
     }
 );
+
+orderSchema.plugin(mongooseAaggregatePaginate)
 
 export const Order = mongoose.model("Order", orderSchema);
